@@ -5,7 +5,7 @@ stack build
 WC="stack exec wc --"
 
 output=$($WC -l ./test_files/3_lines.txt)
-expected="3 ./test_files/3_lines.txt"
+expected=$(wc -l ./test_files/3_lines.txt)
 
 if [ "$output" != "$expected" ]; then
   echo "FAILURE!"
@@ -16,7 +16,7 @@ else
 fi
 
 output=$($WC -l ./test_files/4_lines.txt)
-expected="4 ./test_files/4_lines.txt"
+expected=$(wc -l ./test_files/4_lines.txt)
 
 if [ "$output" != "$expected" ]; then
   echo "FAILURE!"
