@@ -10,5 +10,8 @@ spec = describe "WcArgs" $ do
     let args = ["lala", "file name", "blah"]
     (WcArgs.getFileName args) `shouldBe` "file name"
 
-  it "should return first argument as action" $ do
+  it "should return first argument -l as action CountLines" $ do
     WcArgs.getAction ["-l", "file name"] `shouldBe` WcArgs.CountLines
+
+  it "should return first argument -w as action CountWords" $ do
+    WcArgs.getAction ["-w", "file name"] `shouldBe` WcArgs.CountWords

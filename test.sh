@@ -29,3 +29,8 @@ output=$($MYWC -l ./test_files/4_lines.txt)
 expected=$(wc -l ./test_files/4_lines.txt)
 
 assert_equal "$output" "$expected"
+
+output="$($MYWC -w ./test_files/3_words.txt)"
+expected="$(wc -w ./test_files/3_words.txt)"
+
+assert_equal "$output" "$expected"
