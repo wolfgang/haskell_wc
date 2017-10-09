@@ -11,6 +11,7 @@ if [ "$output" != "$expected" ]; then
   echo "FAILURE!"
   echo "Expected: $expected"
   echo "But got:  $output"
+  exit -1
 else
   echo "SUCCESS!"
 fi
@@ -22,6 +23,7 @@ if [ "$output" != "$expected" ]; then
   echo "FAILURE!"
   echo "Expected: $expected"
   echo "But got:  $output"
+  exit -1
 else
   echo "SUCCESS!"
 fi

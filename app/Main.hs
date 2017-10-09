@@ -1,15 +1,14 @@
 module Main where
 
 import System.Environment
+import qualified WcArgs
 
 main :: IO ()
 main = do
       args <- getArgs
-      let fileName = getFileNameFromArgs args
+      let fileName = WcArgs.getFileName args
       contents <- readFile fileName
       let lineCount = getLineCount contents
       putStrLn $ (show lineCount) ++ " " ++ fileName
 
-getFileNameFromArgs :: [String] -> String
-getFileNameFromArgs args = args!!1
 getLineCount contents = (length $ lines contents)
