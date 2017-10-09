@@ -29,6 +29,7 @@ executable wc
 
 test-suite wc-test
   other-modules:       WcArgsSpec
+                     , WcEvalSpec
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Spec.hs
