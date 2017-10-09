@@ -15,7 +15,7 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     WcArgs, WcEval
+  exposed-modules:     WcArgs, WcText
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
 
@@ -29,7 +29,7 @@ executable wc
 
 test-suite wc-test
   other-modules:       WcArgsSpec
-                     , WcEvalSpec
+                     , WcTextSpec
   type:                exitcode-stdio-1.0
   hs-source-dirs:      test
   main-is:             Spec.hs
