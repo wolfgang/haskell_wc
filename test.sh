@@ -1,8 +1,11 @@
 #!/bin/bash
 
-stack build
+stack test
 [ "$?" != "0" ] && exit $?
 MYWC="stack exec wc --"
+
+echo "---- Running end-to-end tests"
+echo ""
 
 output=$($MYWC -l ./test_files/3_lines.txt)
 expected=$(wc -l ./test_files/3_lines.txt)
