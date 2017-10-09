@@ -2,9 +2,9 @@
 
 stack build
 [ "$?" != "0" ] && exit $?
-WC="stack exec wc --"
+MYWC="stack exec wc --"
 
-output=$($WC -l ./test_files/3_lines.txt)
+output=$($MYWC -l ./test_files/3_lines.txt)
 expected=$(wc -l ./test_files/3_lines.txt)
 
 if [ "$output" != "$expected" ]; then
@@ -15,7 +15,7 @@ else
   echo "SUCCESS!"
 fi
 
-output=$($WC -l ./test_files/4_lines.txt)
+output=$($MYWC -l ./test_files/4_lines.txt)
 expected=$(wc -l ./test_files/4_lines.txt)
 
 if [ "$output" != "$expected" ]; then
