@@ -13,6 +13,15 @@ function assert_equal
   fi
 }
 
+function verify_output
+{
+  args=$1
+  echo "Test $args"
+  output="$($MYWC $args)"
+  expected="$(wc $args)"
+  assert_equal "$output" "$expected"
+}
+
 stack test
 [ "$?" != "0" ] && exit $?
 MYWC="stack exec wc --"
@@ -20,17 +29,8 @@ MYWC="stack exec wc --"
 echo "---- Running end-to-end tests"
 echo ""
 
-output="$($MYWC -l ./test_files/3_lines.txt)"
-expected="$(wc -l ./test_files/3_lines.txt)"
+verify_output "-l ./test_files/3_lines.txt"
+verify_output "-l ./test_files/4_lines.txt"
 
-assert_equal "$output" "$expected"
-
-output=$($MYWC -l ./test_files/4_lines.txt)
-expected=$(wc -l ./test_files/4_lines.txt)
-
-assert_equal "$output" "$expected"
-
-output="$($MYWC -w ./test_files/3_words.txt)"
-expected="$(wc -w ./test_files/3_words.txt)"
-
-assert_equal "$output" "$expected"
+verify_output "-w ./test_files/3_words.txt"
+verify_output "-w ./test_files/7_words_in_3_lines.txt"
