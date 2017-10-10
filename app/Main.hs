@@ -7,10 +7,14 @@ import qualified WcText
 main :: IO ()
 main = do
       args <- getArgs
-      if WcArgs.getAction args == WcArgs.CountLines then do
-        let fileName = WcArgs.getFileName args
-        contents <- readFile fileName
-        let lineCount = WcText.getLineCount contents
-        putStrLn $ (show lineCount) ++ " " ++ fileName
-      else
-        putStrLn $ "Error: Invalid input " ++ show args
+      case WcArgs.getAction args of
+        WcArgs.CountLines -> do
+          let fileName = WcArgs.getFileName args
+          contents <- readFile fileName
+          let lineCount = WcText.getLineCount contents
+          putStrLn $ (show lineCount) ++ " " ++ fileName
+        WcArgs.CountWords -> do
+          let fileName = WcArgs.getFileName args
+          contents <- readFile fileName
+          let lineCount = WcText.getWordCount contents
+          putStrLn $ (show lineCount) ++ " " ++ fileName
