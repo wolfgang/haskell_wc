@@ -7,14 +7,15 @@ import qualified WcText
 main :: IO ()
 main = do
       args <- getArgs
+      let fileName = WcArgs.getFileName args
+      contents <- readFile fileName
       case WcArgs.getAction args of
         WcArgs.CountLines -> do
-          let fileName = WcArgs.getFileName args
-          contents <- readFile fileName
           let lineCount = WcText.getLineCount contents
-          putStrLn $ (show lineCount) ++ " " ++ fileName
+          putStrLn $ buildOutput lineCount fileName
         WcArgs.CountWords -> do
-          let fileName = WcArgs.getFileName args
-          contents <- readFile fileName
-          let lineCount = WcText.getWordCount contents
-          putStrLn $ (show lineCount) ++ " " ++ fileName
+          let wordCount = WcText.getWordCount contents
+          putStrLn $ buildOutput wordCount fileName
+
+buildOutput :: Int -> String -> String
+buildOutput prefix fileName = (show prefix) ++ " " ++ fileName
