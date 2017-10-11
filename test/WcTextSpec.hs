@@ -18,3 +18,10 @@ spec = describe "WcText" $ do
       WcText.getWordCount "word1 word2 word3" `shouldBe` 3
     it "should return 5 for 2 lines with five words and some other whitespace" $ do
       WcText.getWordCount "word1   word2\tword3\nword4    word5  " `shouldBe` 5
+  describe "getByteCount returns number of bytes" $ do
+    it "should return 1 for a string with one character" $ do
+      WcText.getByteCount "a" `shouldBe` 1
+    it "should return 5 for a string with five characters" $ do
+      WcText.getByteCount "abcde" `shouldBe` 5
+    it "should count new-lines" $do
+      WcText.getByteCount "ab\ncde" `shouldBe` 6
