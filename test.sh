@@ -38,3 +38,7 @@ verify_output "-w ./test_files/7_words_in_3_lines.txt"
 expected_stderr=$(wc -x ./test_files/3_lines.txt 2>&1 > /dev/null)
 actual_stderr=$($MYWC -x ./test_files/3_lines.txt 2>&1 > /dev/null)
 assert_equal "$actual_stderr" "$expected_stderr"
+
+expected_stderr=$(wc -x non_existing_file 2>&1 > /dev/null)
+actual_stderr=$($MYWC -x non_existing_file 2>&1 > /dev/null)
+assert_equal "$actual_stderr" "$expected_stderr"

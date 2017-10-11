@@ -17,4 +17,4 @@ spec = describe "WcArgs" $ do
     WcArgs.getAction ["-w", "file name"] `shouldBe` WcArgs.CountWords
 
   it "should return unkown first argument as action InvalidOption" $ do
-    WcArgs.getAction ["-x", "file name"] `shouldBe` WcArgs.InvalidOption
+    WcArgs.getAction ["-x", "file name"] `shouldBe` WcArgs.InvalidOption "x"
