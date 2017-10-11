@@ -37,6 +37,7 @@ verify_output "-w ./test_files/7_words_in_3_lines.txt"
 
 
 verify_output "-c ./test_files/11_bytes_in_2_lines.txt"
+verify_output "-c ./test_files/5_bytes_in_1_line.txt"
 
 expected_stderr=$(wc -x ./test_files/3_lines.txt 2>&1 > /dev/null)
 actual_stderr=$($MYWC -x ./test_files/3_lines.txt 2>&1 > /dev/null)
