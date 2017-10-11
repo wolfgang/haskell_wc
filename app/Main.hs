@@ -1,5 +1,6 @@
 module Main where
 
+import System.IO
 import System.Environment
 import qualified WcArgs
 import qualified WcText
@@ -16,6 +17,8 @@ main = do
         WcArgs.CountWords -> do
           let wordCount = WcText.getWordCount contents
           putStrLn $ buildOutput wordCount fileName
+        WcArgs.InvalidOption -> do
+          hPutStrLn stderr "Invalid action!"
 
 buildOutput :: Int -> String -> String
 buildOutput prefix fileName = (show prefix) ++ " " ++ fileName

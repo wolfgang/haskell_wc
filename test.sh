@@ -2,7 +2,7 @@
 function assert_equal
 {
   actual=$1
-  execpted=$2
+  expected=$2
   if [ "$actual" != "$expected" ]; then
     echo "FAILURE!"
     echo "Expected: $expected"
@@ -34,3 +34,7 @@ verify_output "-l ./test_files/4_lines.txt"
 
 verify_output "-w ./test_files/3_words.txt"
 verify_output "-w ./test_files/7_words_in_3_lines.txt"
+
+expected_stderr=$(wc -x ./test_files/3_lines.txt 2>&1 > /dev/null)
+actual_stderr=$($MYWC -x ./test_files/3_lines.txt 2>&1 > /dev/null)
+assert_equal "$actual_stderr" "$expected_stderr"
