@@ -28,7 +28,8 @@ spec = describe "WcText" $ do
         WcText.getByteCount "ab\ncde" `shouldBe` 6
   describe "New API" $ do
     describe "getLineCountNew returns a WcResult with count of lines" $ do
-        it "should return 1 for one line" $ do
-          WcText.getLineCountNew "line1" `shouldBe` WcText.WcLineCount 1
-        it "should return 3 for three lines" $ do
-          WcText.getLineCountNew "line1\nline2\nline3" `shouldBe` WcText.WcLineCount 3
+      it "should return 1 for one line" $ do
+        WcText.getLineCountNew "line1" `shouldBe` WcText.WcLineCount 1
+      it "should return 3 for three lines" $ do
+        WcText.getLineCountNew "line1\nline2\nline3" `shouldBe` WcText.WcLineCount 3
+     
