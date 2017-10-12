@@ -26,7 +26,7 @@ processFile :: String -> (String -> WcText.WcResult) -> IO ()
 processFile fileName processor = do
   contents <- readFile fileName
   let result = processor contents
-  putStrLn $ buildOutput (show result) fileName
+  putStrLn $ buildOutput (WcText.resultToString result) fileName
 
 buildOutput :: String -> String -> String
 buildOutput prefix fileName = prefix ++ " " ++ fileName

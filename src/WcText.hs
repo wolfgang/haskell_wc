@@ -3,6 +3,7 @@ module WcText (
   getWordCount,
   getByteCount,
   getAllCounts,
+  resultToString,
   WcResult(..)) where
 
 data WcResult = WcSingleCount Int | WcAllCounts Int Int Int deriving (Eq)
@@ -11,6 +12,12 @@ instance Show WcResult where
   show (WcSingleCount count) = show count
   show (WcAllCounts lineCount wordCount byteCount) =
     " " ++ (show lineCount) ++ "  " ++ (show wordCount) ++ " " ++ (show byteCount)
+
+resultToString :: WcResult -> String
+resultToString (WcSingleCount count) = show count
+resultToString (WcAllCounts lineCount wordCount byteCount) =
+  " " ++ (show lineCount) ++ "  " ++ (show wordCount) ++ " " ++ (show byteCount)
+
 
 getLineCount :: String -> WcResult
 getLineCount text = WcSingleCount $ length $ lines text

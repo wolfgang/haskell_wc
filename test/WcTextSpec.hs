@@ -31,8 +31,8 @@ spec = describe "WcText" $ do
       it "returns lines words and bytes for a given string" $ do
         WcText.getAllCounts "line1\nline2 word" `shouldBe` WcText.WcAllCounts 2 3 16
 
-    describe "WcResult Show instance" $ do
+    describe "convert WcResult to string " $ do
       it "shows a WcSingleCount as the string of its count" $ do
-        (show $ WcText.WcSingleCount 1234) `shouldBe` "1234"
+        (WcText.resultToString $ WcText.WcSingleCount 1234) `shouldBe` "1234"
       it "shows a WcAllCounts as the combined string of all counts" $ do
-        (show $ WcText.WcAllCounts 4 7 47) `shouldBe` " 4  7 47"
+        (WcText.resultToString $ WcText.WcAllCounts 4 7 47) `shouldBe` " 4  7 47"
