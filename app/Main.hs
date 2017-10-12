@@ -11,22 +11,30 @@ main = do
       let fileName = WcArgs.getFileName args
       case WcArgs.getAction args of
         WcArgs.CountLines -> do
-          processFile fileName WcText.getLineCount
+          processFile fileName (show . WcText.getLineCount)
         WcArgs.CountWords -> do
-          processFile fileName WcText.getWordCount
+          processFile fileName (show . WcText.getWordCount)
         WcArgs.CountBytes -> do
-            processFile fileName WcText.getByteCount
+            processFile fileName (show . WcText.getByteCount)
         WcArgs.CountAll -> do
-            processFile fileName WcText.getByteCount
+            processFile fileName countAll
         WcArgs.InvalidOption option -> do
           hPutStrLn stderr $ "wc: invalid option -- '" ++ option ++ "'"
           hPutStrLn stderr "Try 'wc --help' for more information."
 
-processFile :: String -> (String -> Int) -> IO ()
+countAll :: String -> String
+countAll contents =
+  let
+    lineCount = WcText.getLineCount contents
+    wordCount = WcText.getWordCount contents
+    byteCount = WcText.getByteCount contents
+  in " " ++ (show lineCount) ++ "  " ++ (show wordCount) ++ " " ++ (show byteCount)
+
+processFile :: String -> (String -> String) -> IO ()
 processFile fileName processor = do
   contents <- readFile fileName
   let count = processor contents
   putStrLn $ buildOutput count fileName
 
-buildOutput :: Int -> String -> String
-buildOutput prefix fileName = (show prefix) ++ " " ++ fileName
+buildOutput :: String -> String -> String
+buildOutput prefix fileName = prefix ++ " " ++ fileName
