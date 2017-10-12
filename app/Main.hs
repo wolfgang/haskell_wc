@@ -15,7 +15,7 @@ main = do
         WcArgs.CountWords -> do
           processFileNew fileName WcText.getWordCountNew
         WcArgs.CountBytes -> do
-            processFile fileName (show . WcText.getByteCount)
+            processFileNew fileName WcText.getByteCountNew
         WcArgs.CountAll -> do
             processFile fileName countAll
         WcArgs.InvalidOption option -> do
