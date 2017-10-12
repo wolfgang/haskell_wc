@@ -11,11 +11,11 @@ main = do
       let fileName = WcArgs.getFileName args
       case WcArgs.getAction args of
         WcArgs.CountLines -> do
-          processFile fileName WcText.getLineCountNew
+          processFile fileName WcText.getLineCount
         WcArgs.CountWords -> do
-          processFile fileName WcText.getWordCountNew
+          processFile fileName WcText.getWordCount
         WcArgs.CountBytes -> do
-            processFile fileName WcText.getByteCountNew
+            processFile fileName WcText.getByteCount
         WcArgs.CountAll -> do
             processFile fileName WcText.getAllCounts
         WcArgs.InvalidOption option -> do

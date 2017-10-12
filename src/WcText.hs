@@ -1,7 +1,7 @@
 module WcText (
-  getLineCountNew,
-  getWordCountNew,
-  getByteCountNew,
+  getLineCount,
+  getWordCount,
+  getByteCount,
   getAllCounts,
   WcResult(..)) where
 
@@ -17,19 +17,19 @@ instance Show WcResult where
   show (WcAllCounts lineCount wordCount byteCount) =
     " " ++ (show lineCount) ++ "  " ++ (show wordCount) ++ " " ++ (show byteCount)
 
-getLineCountNew :: String -> WcResult
-getLineCountNew text = WcLineCount $ length $ lines text
+getLineCount :: String -> WcResult
+getLineCount text = WcLineCount $ length $ lines text
 
-getWordCountNew :: String -> WcResult
-getWordCountNew text = WcWordCount $ length $ words text
+getWordCount :: String -> WcResult
+getWordCount text = WcWordCount $ length $ words text
 
-getByteCountNew :: String -> WcResult
-getByteCountNew text = WcByteCount $ length text
+getByteCount :: String -> WcResult
+getByteCount text = WcByteCount $ length text
 
 getAllCounts :: String -> WcResult
 getAllCounts text =
   WcAllCounts lineCount wordCount byteCount
   where
-    WcLineCount lineCount = getLineCountNew text
-    WcWordCount wordCount = getWordCountNew text
-    WcByteCount byteCount = getByteCountNew text
+    WcLineCount lineCount = getLineCount text
+    WcWordCount wordCount = getWordCount text
+    WcByteCount byteCount = getByteCount text
