@@ -47,10 +47,14 @@ spec = describe "WcText" $ do
       it "should count new-lines" $do
         WcText.getByteCountNew "ab\ncde" `shouldBe` WcText.WcByteCount 6
 
-
+    describe "getAllCounts returns lines, words and bytes" $ do
+      it "returns lines words and bytes for a given string" $ do
+        WcText.getAllCounts "line1\nline2 word" `shouldBe` WcText.WcAllCounts 2 3 16
 
     describe "WcResult Show instance" $ do
       it "shows a WcLineCount as the string of its count" $ do
         (show $ WcText.WcLineCount 1234) `shouldBe` "1234"
       it "shows a WcWordCount as the string of its count" $ do
         (show $ WcText.WcWordCount 1234) `shouldBe` "1234"
+      it "shows a WcAllCounts as the combined string of all counts" $ do
+        (show $ WcText.WcAllCounts 4 7 47) `shouldBe` " 4  7 47"
