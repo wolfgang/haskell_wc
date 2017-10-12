@@ -17,8 +17,8 @@ function verify_output
 {
   args=$1
   echo "Test $args"
-  output="$($MYWC $args)"
-  expected="$(wc $args)"
+  expected="$($MYWC $args)"
+  output="$(wc $args)"
   assert_equal "$output" "$expected"
 }
 
