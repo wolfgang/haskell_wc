@@ -16,6 +16,8 @@ main = do
           processFile fileName WcText.getWordCount
         WcArgs.CountBytes -> do
             processFile fileName WcText.getByteCount
+        WcArgs.CountAll -> do
+            processFile fileName WcText.getByteCount
         WcArgs.InvalidOption option -> do
           hPutStrLn stderr $ "wc: invalid option -- '" ++ option ++ "'"
           hPutStrLn stderr "Try 'wc --help' for more information."
