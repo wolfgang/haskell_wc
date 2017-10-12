@@ -25,8 +25,7 @@ main = do
 processFile :: String -> (String -> WcText.WcResult) -> IO ()
 processFile fileName processor = do
   contents <- readFile fileName
-  let result = processor contents
-  putStrLn $ buildOutput result fileName
+  putStrLn $ buildOutput (processor contents) fileName
 
 buildOutput :: WcText.WcResult -> String -> String
 buildOutput result fileName = (WcText.resultToString result) ++ " " ++ fileName
