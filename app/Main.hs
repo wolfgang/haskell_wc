@@ -13,7 +13,7 @@ main = do
         WcArgs.CountLines -> do
           processFileNew fileName WcText.getLineCountNew
         WcArgs.CountWords -> do
-          processFile fileName (show . WcText.getWordCount)
+          processFileNew fileName WcText.getWordCountNew
         WcArgs.CountBytes -> do
             processFile fileName (show . WcText.getByteCount)
         WcArgs.CountAll -> do

@@ -32,6 +32,18 @@ spec = describe "WcText" $ do
         WcText.getLineCountNew "line1" `shouldBe` WcText.WcLineCount 1
       it "should return 3 for three lines" $ do
         WcText.getLineCountNew "line1\nline2\nline3" `shouldBe` WcText.WcLineCount 3
+    describe "getWordCountNew returns number of words" $ do
+      it "should return 1 for a line with a single word" $ do
+        WcText.getWordCountNew "word" `shouldBe` WcText.WcWordCount 1
+      it "should return 3 for a line with three words" $ do
+        WcText.getWordCountNew "word1 word2 word3" `shouldBe` WcText.WcWordCount 3
+      it "should return 5 for 2 lines with five words and some other whitespace" $ do
+        WcText.getWordCountNew "word1   word2\tword3\nword4    word5  " `shouldBe` WcText.WcWordCount  5
+
+
+
     describe "WcResult Show instance" $ do
       it "shows a WcLineCount as the string of its count" $ do
         (show $ WcText.WcLineCount 1234) `shouldBe` "1234"
+      it "shows a WcWordCount as the string of its count" $ do
+        (show $ WcText.WcWordCount 1234) `shouldBe` "1234"
