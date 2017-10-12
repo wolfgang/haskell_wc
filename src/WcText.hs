@@ -1,21 +1,9 @@
 module WcText (
-  getLineCount,
-  getWordCount,
-  getByteCount,
   getLineCountNew,
   getWordCountNew,
   getByteCountNew,
   getAllCounts,
   WcResult(..)) where
-
-getLineCount :: String -> Int
-getLineCount text = length $ lines text
-
-getWordCount :: String -> Int
-getWordCount text = length $ words text
-
-getByteCount :: String -> Int
-getByteCount text = length text
 
 data WcResult = WcLineCount Int
                 | WcWordCount Int
@@ -39,4 +27,9 @@ getByteCountNew :: String -> WcResult
 getByteCountNew text = WcByteCount $ length text
 
 getAllCounts :: String -> WcResult
-getAllCounts text = WcAllCounts (getLineCount text) (getWordCount text) (getByteCount text)
+getAllCounts text =
+  WcAllCounts lineCount wordCount byteCount
+  where
+    WcLineCount lineCount = getLineCountNew text
+    WcWordCount wordCount = getWordCountNew text
+    WcByteCount byteCount = getByteCountNew text
