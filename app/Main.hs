@@ -22,14 +22,11 @@ main = do
           hPutStrLn stderr $ "wc: invalid option -- '" ++ option ++ "'"
           hPutStrLn stderr "Try 'wc --help' for more information."
 
-resultToString :: WcText.WcResult -> String
-resultToString (WcText.WcLineCount count) = show count
-
 processFileNew :: String -> (String -> WcText.WcResult) -> IO ()
 processFileNew fileName processor = do
   contents <- readFile fileName
   let result = processor contents
-  putStrLn $ buildOutput (resultToString result) fileName
+  putStrLn $ buildOutput (show result) fileName
 
 countAll :: String -> String
 countAll contents =

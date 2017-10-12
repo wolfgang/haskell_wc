@@ -32,4 +32,6 @@ spec = describe "WcText" $ do
         WcText.getLineCountNew "line1" `shouldBe` WcText.WcLineCount 1
       it "should return 3 for three lines" $ do
         WcText.getLineCountNew "line1\nline2\nline3" `shouldBe` WcText.WcLineCount 3
-     
+    describe "WcResult Show instance" $ do
+      it "shows a WcLineCount as the string of its count" $ do
+        (show $ WcText.WcLineCount 1234) `shouldBe` "1234"
